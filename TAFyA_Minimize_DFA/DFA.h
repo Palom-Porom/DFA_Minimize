@@ -132,6 +132,8 @@ public:
                     if (transitionTable.find(make_pair(firstState, trigger)) != transitionTable.end() && s.find(transitionTable[make_pair(firstState, trigger)]) != s.end())
                         transitionTable[make_pair(firstState, trigger)] = firstState;
                 }
+                if (s.find(startState) != s.end())
+                    startState = firstState;
                 while (it != s.end())
                 {
                     for (auto trigger : triggers)
@@ -145,6 +147,7 @@ public:
                             transitionTable.erase(make_pair(*it, trigger));
                         }
                     }
+                    states.erase(*it);
                     it++;
                 }
                
